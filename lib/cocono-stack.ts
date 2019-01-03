@@ -10,7 +10,7 @@ export class CoconoStack extends cdk.Stack {
 
     // The code that defines your stack goes here
     const backend = new lambda.Function(this, `${name}Backend`, {
-      code: lambda.Code.asset("./lib/lambda"),
+      code: lambda.Code.asset("./dist"),
       handler: "index.handler",
       memorySize: 256,
       timeout: 60,

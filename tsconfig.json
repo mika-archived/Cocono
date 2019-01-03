@@ -20,6 +20,9 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
-  }
+    "strictPropertyInitialization": false,
+  },
+  "exclude": [
+    "src"
+  ]
 }

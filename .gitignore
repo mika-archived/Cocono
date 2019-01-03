@@ -60,6 +60,10 @@ typings/
 # next.js build output
 .next
 
+# parcle build cache/output
+.cache
+dist
+
 # CDK
 *.d.ts
 *.js
