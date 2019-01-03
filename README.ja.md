@@ -117,4 +117,32 @@ Cocono は、 `stacks` の処理結果が全て `true` となった場合のみ�
 
 実際に使用している設定です。
 
-![default](https://user-images.githubusercontent.com/10832834/50655286-07823280-0fd3-11e9-8e5e-fef6c11b6bbb.PNG)
+```
+URL         : https://cocono.mochizuki.moe
+Method      : POST
+Content-Type: application/json
+Body        :
+{
+  "username": "{{AuthorName}}",
+  "avatar_url": "https://yt3.ggpht.com/a-/AAuE7mAjfhfYI_skOYS-upkXN5yM315sZ5WVsNlWSA=s288-mo-c-c0xffffffff-rj-k-no",
+  "content": "**{{AuthorName}}** が **{{Title}}** をアップロードしました: {{Url}}",
+  "_cocono": {
+    "relay_to": "https://discordapp.com/api/webhooks/XXXXXXXXXX/XXXXXXXXXX",
+    "content": {
+      "title": "{{Title}}"
+    },
+    "stacks": [
+      {
+        "type": "filter",
+        "ops": "~=",
+        "params": [
+          {
+            "ref": "_cocono.content.title"
+          },
+          "歌ってみた"
+        ]
+      }
+    ]
+  }
+}
+```
