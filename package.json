@@ -5,8 +5,8 @@
     "cocono": "bin/cocono.js"
   },
   "scripts": {
-    "build:app": "parcel build src/index.ts",
-    "watch:app": "parcel watch src/index.ts",
+    "build:app": "parcel build src/index.ts --target=node --bundle-node-modules",
+    "watch:app": "parcel watch src/index.ts --target=node --bundle-node-modules",
     "build:cdk": "tsc",
     "watch:cdk": "tsc -w",
     "cdk": "cdk"

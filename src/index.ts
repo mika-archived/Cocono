@@ -61,19 +61,16 @@ exports.handler = (event: APIGatewayEvent, _context: Context, callback: Callback
   delete body._cocono;
 
   console.log(`Request to ${cocono.relay_to} with body ${JSON.stringify(body)}`);
-  axios.post(cocono.relay_to, JSON.stringify(body), {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(_ => {
+  axios.post(cocono.relay_to, body).then(_ => {
     callback(null, {
       statusCode: 200,
       body: JSON.stringify({ status: "success" })
     });
   }).catch(error => {
+    console.log(error);
     callback(null, {
       statusCode: 403,
-      body: JSON.stringify({ status: "error", error, cocono })
+      body: JSON.stringify({ status: "error" })
     });
   });
 };
