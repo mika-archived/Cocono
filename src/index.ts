@@ -33,12 +33,14 @@ function filter(stack: ICoconoStack, obj: any): boolean {
 
 exports.handler = (event: APIGatewayEvent, _context: Context, callback: Callback) => {
   if (event.body === null) {
-    return callback(null, { statusCode: 403, body: JSON.stringify({ status: "fail" }) });
+    // Bad Request
+    return callback(null, { statusCode: 400, body: JSON.stringify({ status: "fail" }) });
   }
 
   const body = JSON.parse(event.body);
   if (!body._cocono) {
-    return callback(null, { statusCode: 403, body: JSON.stringify({ status: "fail" }) });
+    // Bad Request
+    return callback(null, { statusCode: 400, body: JSON.stringify({ status: "fail" }) });
   }
 
   const cocono = body._cocono as ICocono;
@@ -67,9 +69,10 @@ exports.handler = (event: APIGatewayEvent, _context: Context, callback: Callback
       body: JSON.stringify({ status: "success" })
     });
   }).catch(error => {
+    // Internal Server Error
     console.log(error);
     callback(null, {
-      statusCode: 403,
+      statusCode: 500,
       body: JSON.stringify({ status: "error" })
     });
   });
