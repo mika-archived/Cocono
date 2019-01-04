@@ -34,6 +34,11 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - run:
+          name: Tests
+          command: |
+            yarn run test
+
+      - run:
           name: Install aws-cli
           command: |
             sudo apt update

@@ -9,7 +9,7 @@ export interface ICoconoParam {
 }
 
 export interface ICoconoStack {
-  type: "filter";
-  ops: "==" | "!=" | "~=";
+  type: string;
+  ops: string;
   params: (string | ICoconoParam)[];
 }
