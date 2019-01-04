@@ -1,6 +1,6 @@
 # Cocono
 
-Cocono は、フィルター処理などを行うことが出来る WebHook リレー API です。  
+Cocono は、フィルター処理などを行うことが出来る Webhook リレー API です。  
 例えば、次のように使えます。
 
 ```
@@ -95,7 +95,7 @@ Cocono は、 `stacks` の処理結果が全て `true` となった場合のみ�
 
 | Path       | Type      | Description          |
 | ---------- | --------- | -------------------- |
-| `relay_to` | `string`  | リレー先 WebHook URL |
+| `relay_to` | `string`  | リレー先 Webhook URL |
 | `stacks`   | `Stack[]` | 処理の流れ           |
 
 
@@ -105,12 +105,12 @@ Cocono は、 `stacks` の処理結果が全て `true` となった場合のみ�
 `params` プロパティでは、 `{ref: ""}` の形式で JSON の内容へアクセスすることが出来ます。  
 例えば、 `username` を元に処理を行いたい場合は `{ref: "username"}` とすることで、 ``{{AuthorName}}`` が取得できます。
 
-| Path           | Type                 | Description |
-| -------------- | -------------------- | ----------- |
-| `type`         | `"filter"`           | 処理タイプ  |
+| Path           | Type                   | Description |
+| -------------- | ---------------------- | ----------- |
+| `type`         | `"filter"`             | 処理タイプ  |
 | `ops`          | `"==" \| "!=" \| "~="` | 処理内容    |
-| `params`       | `string \| object`    | パラメータ  |
-| `params[].ref` | `string`             | JSON Path   |
+| `params`       | `string \| object`     | パラメータ  |
+| `params[].ref` | `string`               | JSON Path   |
 
 
 ## Example
