@@ -21,9 +21,9 @@ Cocono は、基本的にはリクエストボディ内の `_cocono` プロパ�
   "avatar_url":"https://yt3.ggpht.com/a-/AAuE7mAjfhfYI_skOYS-upkXN5yM315sZ5WVsNlWSA=s288-mo-c-c0xffffffff-rj-k-no",
   "content": "**{{AuthorName}}** が **{{Title}}** をアップロードしました: {{Url}}",
   "_cocono": {
-    "relay_to": "https://discordapp.com/api/webhooks/530254600469610496/M43cENQbAktFtVkuLLeGk1cyKq-G5n37qR9LC7Wxg_o3xgI6GPxMDEyl7X45iAtjhAjy",
+    "relay_to": "https://discordapp.com/api/webhooks/XXXXXXXXXX/XXXXXXXXXX",
     "content": {
-      "title": "【寂しい】命に嫌われている。 歌ってみた【初音ミク/カンザキイオリ】"
+      "title": "{{Title}}"
     },
     "stacks": [
       {
@@ -63,7 +63,7 @@ Cocono は、基本的にはリクエストボディ内の `_cocono` プロパ�
   "avatar_url": "https://yt3.ggpht.com/a-/AAuE7mAjfhfYI_skOYS-upkXN5yM315sZ5WVsNlWSA=s288-mo-c-c0xffffffff-rj-k-no",
   "content": "**{{AuthorName}}** が **{{Title}}** をアップロードしました: {{Url}}",
   "_cocono": {
-    "relay_to": "https://discordapp.com/api/webhooks/530254600469610496/M43cENQbAktFtVkuLLeGk1cyKq-G5n37qR9LC7Wxg_o3xgI6GPxMDEyl7X45iAtjhAjy",
+    "relay_to": "https://discordapp.com/api/webhooks/XXXXXXXXXX/XXXXXXXXXX",
     "content": {
       "title": "{{Title}}"
     },
@@ -108,8 +108,8 @@ Cocono は、 `stacks` の処理結果が全て `true` となった場合のみ�
 | Path           | Type                 | Description |
 | -------------- | -------------------- | ----------- |
 | `type`         | `"filter"`           | 処理タイプ  |
-| `ops`          | `"==" | "!=" | "~="` | 処理内容    |
-| `params`       | `string | object`    | パラメータ  |
+| `ops`          | `"==" \| "!=" \| "~="` | 処理内容    |
+| `params`       | `string \| object`    | パラメータ  |
 | `params[].ref` | `string`             | JSON Path   |
 
 
