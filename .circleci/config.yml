@@ -22,30 +22,34 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache/yarn
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - run:
           name: Install aws-cli
           command: |
             sudo apt update
             sudo apt install -y awscli
+
       - run:
           name: Build
           command: |
-            yarn run build
+            yarn run build:cdk
+            yarn run build:app
+
       - run:
           name: Configure AWS region
           command: |
             aws configure set region ap-northeast-1
+
       - deploy:
           name: Deployment
           command: |
