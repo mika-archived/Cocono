@@ -7,8 +7,6 @@ export interface IFilterStack extends ICoconoStack {
 }
 
 export class FilterStack extends StackBase<IFilterStack> {
-  public name: string = "filter";
-
   public run(): boolean {
     switch (this.stack.ops) {
       case "==":

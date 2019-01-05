@@ -3,7 +3,6 @@ import { ICoconoParam, ICoconoStack, } from "../object";
 
 export abstract class StackBase<T extends ICoconoStack> {
   protected readonly stack: T;
-  public abstract readonly name: string;
 
   public constructor(stack: ICoconoStack, protected readonly obj: any) {
     this.stack = stack as T;
