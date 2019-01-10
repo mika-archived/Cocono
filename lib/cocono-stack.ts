@@ -31,7 +31,7 @@ export class CoconoStack extends cdk.Stack {
     restApi.root.addMethod("POST");
 
     // CloudWatch Alarm for Lambda
-    const alarm = new cloudwatch.Alarm(this, `${name}ErrorAlarm`, {
+    new cloudwatch.Alarm(this, `${name}ErrorAlarm`, {
       alarmName: "Cocono API Errors",
       alarmDescription: "Cocono Lambda Function Unhandled Errors",
       comparisonOperator: cloudwatch.ComparisonOperator.GreaterThanOrEqualToThreshold,
