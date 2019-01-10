@@ -1,4 +1,4 @@
-import { IFilterStack, FilterStack } from "../../src/stacks/FilterStack";
+import { IFilterStack, FilterStack } from "../../../src/app/stacks/FilterStack";
 
 describe("FilterStack", () => {
   const title = "【YuNi×天神子兎音】クノイチでも恋がしたい / みきとP【歌ってみたコラボ】";

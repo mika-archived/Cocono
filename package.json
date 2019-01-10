@@ -5,10 +5,12 @@
     "cocono": "bin/cocono.js"
   },
   "scripts": {
-    "build:app": "parcel build src/index.ts --target=node --bundle-node-modules",
-    "watch:app": "parcel watch src/index.ts --target=node --bundle-node-modules",
+    "build:app": "parcel build src/app/index.ts --target=node --bundle-node-modules --out-dir=dist/app",
+    "watch:app": "parcel watch src/app/index.ts --target=node --bundle-node-modules",
     "build:cdk": "tsc",
     "watch:cdk": "tsc -w",
+    "build:srv": "parcel build src/srv/index.ts --target=node --bundle-node-modules --out-dir=dist/srv",
+    "watch:srv": "parcel build src/srv/index.ts --target=node --bundle-node-modules",
     "cdk": "cdk",
     "test": "jest"
   },
@@ -27,6 +29,7 @@
     "@aws-cdk/aws-apigateway": "^0.21.0",
     "@aws-cdk/aws-cloudwatch": "^0.21.0",
     "@aws-cdk/aws-lambda": "^0.21.0",
+    "@aws-cdk/aws-sns": "^0.21.0",
     "@aws-cdk/cdk": "^0.21.0",
     "axios": "^0.18.0",
     "lodash": "^4.17.11"
