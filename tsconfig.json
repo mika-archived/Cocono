@@ -24,6 +24,7 @@
     "esModuleInterop": true
   },
   "exclude": [
-    "src"
+    "src",
+    "__tests__"
   ]
 }

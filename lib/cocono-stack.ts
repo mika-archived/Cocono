@@ -8,30 +8,39 @@ export class CoconoStack extends cdk.Stack {
   constructor(parent: cdk.App, name: string, props?: cdk.StackProps) {
     super(parent, name, props);
 
-    // Lambda Backend
-    const backend = new lambda.Function(this, `${name}Backend`, {
-      code: lambda.Code.asset("./dist/app"),
+    // Lambda Backends
+    const main = new lambda.Function(this, `Main`, {
+      code: lambda.Code.asset("./dist/main"),
       handler: "index.handler",
       memorySize: 256,
       timeout: 60,
-      runtime: lambda.Runtime.NodeJS810,
+      runtime: lambda.Runtime.NodeJS810
+    });
+
+    const docs = new lambda.Function(this, `Docs`, {
+      code: lambda.Code.asset("./dist/docs"),
+      handler: "index.handler",
+      memorySize: 256,
+      timeout: 10,
+      runtime: lambda.Runtime.NodeJS810
     });
 
     // API Gateway
-    const restApi = new apigateway.LambdaRestApi(this, `${name}Api`, {
-      handler: backend,
-      proxy: false,
+    const gateway = new apigateway.LambdaRestApi(this, 'CoconoApi', {
+      handler: main,
       options: {
         deployOptions: {
-          stageName: "v1",
+          stageName: "v1"
         }
-      }
+      },
+      proxy: false
     });
-    restApi.root.addMethod("POST");
+    gateway.root.addMethod("POST");
+    gateway.root.addMethod("GET", new apigateway.LambdaIntegration(docs, { proxy: false }));
 
     // Send Alarm to Discord
-    const notify = new lambda.Function(this, `${name}Notify`, {
-      code: lambda.Code.asset("./dist/srv"),
+    const notify = new lambda.Function(this, `Notify`, {
+      code: lambda.Code.asset("./dist/notify"),
       handler: "index.handler",
       memorySize: 256,
       timeout: 60,
@@ -39,16 +48,16 @@ export class CoconoStack extends cdk.Stack {
     });
 
     // Create a SNS topic
-    const topic = new sns.Topic(this, `${name}Topic`);
+    const topic = new sns.Topic(this, `Topic`);
     topic.subscribeLambda(notify);
 
     // CloudWatch Alarm for Lambda
-    const alarm = new cloudwatch.Alarm(this, `${name}ErrorAlarm`, {
+    const alarm = new cloudwatch.Alarm(this, `ErrorAlarm`, {
       alarmName: "Cocono API Errors",
       alarmDescription: "Cocono Lambda Function Unhandled Errors",
       comparisonOperator: cloudwatch.ComparisonOperator.GreaterThanOrEqualToThreshold,
       evaluationPeriods: 1,
-      metric: backend.metricErrors(),
+      metric: main.metricErrors(),
       threshold: 1,
     });
     alarm.onAlarm(topic);

@@ -5,12 +5,10 @@
     "cocono": "bin/cocono.js"
   },
   "scripts": {
-    "build:app": "parcel build src/app/index.ts --target=node --bundle-node-modules --out-dir=dist/app",
-    "watch:app": "parcel watch src/app/index.ts --target=node --bundle-node-modules",
+    "build:app": "parcel build src/main/index.ts src/docs/index.ts src/notify/index.ts --target=node --bundle-node-modules",
+    "watch:app": "parcel watch src/main/index.ts src/docs/index.ts src/notify/index.ts --target=node --bundle-node-modules",
     "build:cdk": "tsc",
     "watch:cdk": "tsc -w",
-    "build:srv": "parcel build src/srv/index.ts --target=node --bundle-node-modules --out-dir=dist/srv",
-    "watch:srv": "parcel build src/srv/index.ts --target=node --bundle-node-modules",
     "cdk": "cdk",
     "test": "jest"
   },
