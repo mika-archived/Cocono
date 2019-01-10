@@ -44,7 +44,10 @@ export class CoconoStack extends cdk.Stack {
       handler: "index.handler",
       memorySize: 256,
       timeout: 60,
-      runtime: lambda.Runtime.NodeJS810
+      runtime: lambda.Runtime.NodeJS810,
+      environment: {
+        DISCORD_NOTIFICATION_URL: process.env.DISCORD_NOTIFICATION_URL
+      }
     });
 
     // Create a SNS topic
