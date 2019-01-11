@@ -47,8 +47,9 @@ jobs:
       - run:
           name: Build
           command: |
-            yarn run build:cdk
             yarn run build:app
+            yarn run build:cdk
+            yarn run build:docs
 
       - run:
           name: Configure AWS region

@@ -1,5 +1,7 @@
-import { Context, APIGatewayEvent, Callback } from "aws-lambda";
+import express, { static as s } from "express";
+import serverless from "serverless-http";
 
-export const handler = async (event: APIGatewayEvent, _context: Context, callback: Callback) => {
-  // TODO: Document
-};
+const app = express();
+app.use(s("./docs"));
+
+export const handler = serverless(app);

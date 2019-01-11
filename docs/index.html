@@ -1,0 +1,53 @@
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Cocono Docs</title>
+  <link rel="stylesheet" href="https://unpkg.com/docute@4/dist/docute.css">
+</head>
+<body>
+  <div id="docute"></div>
+  <script src="https://unpkg.com/docute@4/dist/docute.js"></script>
+  <script>
+    new Docute({
+      target: '#docute',
+      title: "Cocono Docs",
+      nav: [
+        {
+          title: "Home",
+          link: "/"
+        },
+        {
+          title: "GitHub",
+          link: "https://github.com/mika-f/Cocono"
+        }
+      ],
+      sidebar: [
+        {
+          title: "Stacks",
+          links: [
+            {
+              title: "About Stack",
+              link: "/stacks/"
+            },
+            {
+              title: "Filter",
+              link: "/stacks/filter"
+            }
+          ]
+        },
+        {
+          title: "Advanced",
+          links: [
+            {
+              title: "Hosting",
+              link: "/hosting/"
+            }
+          ]
+        }
+      ],
+      footer: "&copy; " + new Date().getFullYear() + " Mikazuki, Made by <a href='https://docute.org'>Docute</a>"
+    })
+  </script>
+</body>
+</html>

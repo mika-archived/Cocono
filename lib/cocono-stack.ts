@@ -36,7 +36,8 @@ export class CoconoStack extends cdk.Stack {
       proxy: false
     });
     gateway.root.addMethod("POST");
-    gateway.root.addMethod("GET", new apigateway.LambdaIntegration(docs, { proxy: false }));
+    gateway.root.addMethod("GET", new apigateway.LambdaIntegration(docs, { proxy: true }));
+    gateway.root.addProxy({ defaultIntegration: new apigateway.LambdaIntegration(docs, { proxy: true }) });
 
     // Send Alarm to Discord
     const notify = new lambda.Function(this, `Notify`, {
