@@ -9,8 +9,6 @@
     "watch:app": "parcel watch src/main/index.ts src/notify/index.ts --target=node --bundle-node-modules",
     "build:cdk": "tsc",
     "watch:cdk": "tsc -w",
-    "build:docs": "parcel build src/docs/index.ts --target=node --bundle-node-modules --out-dir=dist/docs && cp -r docs/ dist/docs",
-    "serve:docs": "serve ./docs/",
     "cdk": "cdk",
     "test": "jest"
   },
@@ -29,13 +27,15 @@
   },
   "dependencies": {
     "@aws-cdk/aws-apigateway": "^0.21.0",
+    "@aws-cdk/aws-cloudfront": "^0.21.0",
     "@aws-cdk/aws-cloudwatch": "^0.21.0",
+    "@aws-cdk/aws-iam": "^0.21.0",
     "@aws-cdk/aws-lambda": "^0.21.0",
+    "@aws-cdk/aws-s3": "^0.21.0",
+    "@aws-cdk/aws-s3-deployment": "^0.21.0",
     "@aws-cdk/aws-sns": "^0.21.0",
     "@aws-cdk/cdk": "^0.21.0",
     "axios": "^0.18.0",
-    "express": "^4.16.4",
-    "lodash": "^4.17.11",
-    "serverless-http": "^1.8.0"
+    "lodash": "^4.17.11"
   }
 }
