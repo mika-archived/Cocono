@@ -5,13 +5,17 @@ import { ICocono } from "./object";
 import { createStack } from "./stacks";
 
 export const handler = async (event: APIGatewayEvent, _context: Context, callback: Callback) => {
+  if (event.httpMethod !== "POST") {
+    // equality GET
+    return callback(null, { statusCode: 302, headers: { Location: `https://${process.env.CLOUDFRONT_ALIAS_NAME}/docs/` } });
+  }
   if (!event.body) {
     return callback("Bad Request: body is empty, please use direct hook");
   }
 
   const body = JSON.parse(event.body);
   if (!body._cocono) {
-    return callback("Bad Request: _cocono property is empty, please use direct hook")
+    return callback("Bad Request: _cocono property is empty, please use direct hook");
   }
 
   const cocono = body._cocono as ICocono;

@@ -20,11 +20,14 @@ export class CoconoStack extends cdk.Stack {
       handler: "index.handler",
       memorySize: 256,
       timeout: 60,
-      runtime: lambda.Runtime.NodeJS810
+      runtime: lambda.Runtime.NodeJS810,
+      environment: {
+        CLOUDFRONT_ALIAS_NAME: process.env.CLOUDFRONT_ALIAS_NAME
+      }
     });
 
     // API Gateway
-    const gateway = new apigateway.LambdaRestApi(this, 'CoconoApi', {
+    const gateway = new apigateway.LambdaRestApi(this, "CoconoApi", {
       handler: main,
       options: {
         deployOptions: {
@@ -34,6 +37,7 @@ export class CoconoStack extends cdk.Stack {
       proxy: false
     });
     gateway.root.addMethod("POST");
+    gateway.root.addMethod("GET");
 
     // S3 Bucket for Documents
     const bucket = new s3.Bucket(this, `Bucket`, {
@@ -73,16 +77,18 @@ export class CoconoStack extends cdk.Stack {
         {
           s3OriginSource: {
             s3BucketSource: bucket,
-            originAccessIdentity: oai,
+            originAccessIdentity: oai
           },
+          // prettier-ignore
           behaviors: [{
             pathPattern: "/docs/*"
-          }],
+          }]
         },
         {
           customOriginSource: {
             domainName: gateway.url.substring("https://".length, gateway.url.indexOf("/", "https://".length))
           },
+          // prettier-ignore
           behaviors: [{
             isDefaultBehavior: true,
             pathPattern: "/",
@@ -123,7 +129,7 @@ export class CoconoStack extends cdk.Stack {
       comparisonOperator: cloudwatch.ComparisonOperator.GreaterThanOrEqualToThreshold,
       evaluationPeriods: 1,
       metric: main.metricErrors(),
-      threshold: 1,
+      threshold: 1
     });
     alarm.onAlarm(topic);
     alarm.onOk(topic);
