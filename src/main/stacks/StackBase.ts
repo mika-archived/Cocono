@@ -1,5 +1,5 @@
 import get from "lodash/get";
-import { ICoconoParam, ICoconoStack, } from "../object";
+import { ICoconoParam, ICoconoStack } from "../object";
 
 export abstract class StackBase<T extends ICoconoStack> {
   protected readonly stack: T;
